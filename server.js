@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
 app.get('/dictation', (req, res) => {
     res.render('dictation');
   });
+
+  app.get('/profile', (req, res) => {
+    res.render('profile');
+  });
   
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
