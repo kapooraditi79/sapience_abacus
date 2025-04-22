@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice Dashboard - Priya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen p-6">
+
+    <div class="max-w-6xl mx-auto space-y-8">
+        <!-- Header -->
+        <header class="flex items-center justify-between bg-white px-6 py-4 shadow-sm border-b border-gray-100">
+            <!-- Left: Company Logo + Name -->
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/40x40.png?text=Logo" alt="Company Logo" class="w-10 h-10" />
+                <span class="text-xl font-bold text-blue-700">EduChamp</span>
+            </div>
+
+            <!-- Right: Student Profile -->
+            <div class="flex items-center space-x-3">
+                <span class="text-gray-800 font-semibold text-lg">Aryan Sharma</span>
+                <img src="https://i.pravatar.cc/40?img=8" alt="Child Profile"
+                    class="w-10 h-10 rounded-full object-cover" />
+            </div>
+        </header>
+
+        <!-- Student Name Below Header -->
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+            <h1 class="text-2xl font-bold text-gray-800">Welcome back, Aryan Sharma</h1>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Points Earned -->
+            <div
+                class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-blue-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-gray-900">150</div>
+                        <div class="text-gray-500">Points Earned</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Level -->
+            <div
+                class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-indigo-100 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-indigo-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16h6M4 6h16M4 6v12a2 2 0 002 2h12a2 2 0 002-2V6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-gray-900">Level 3</div>
+                        <div class="text-gray-500">Current Level</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Days Practiced -->
+            <div
+                class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-amber-100 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-amber-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-gray-900">8</div>
+                        <div class="text-gray-500">Days Practiced</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Practice Progress -->
+        <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-2xl shadow-lg">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-white">
+                    <h3 class="text-xl font-semibold">Daily Practice Streak 🔥</h3>
+                    <p class="opacity-90">Current streak: 8 days</p>
+                </div>
+                <div class="w-full md:w-48">
+                    <div class="h-3 bg-white/20 rounded-full">
+                        <div class="w-3/4 h-full bg-white rounded-full transition-all duration-500"></div>
+                    </div>
+                    <p class="text-white text-sm mt-2 text-right">75% to next milestone</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Start Practice -->
+            <button onclick="window.location.href='/dictation.html'"
+                class="group flex items-center justify-between p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900">Start New Practice</h3>
+                    <p class="text-gray-500 text-sm">Begin a fresh learning session</p>
+                </div>
+                <div class="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </div>
+            </button>
+
+            <!-- Review Practice -->
+            <div class="relative group">
+                <button
+                    class="group flex items-center justify-between p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">Dictation Practices</h3>
+                        <p class="text-gray-500 text-sm">Tap to choose a category</p>
+                    </div>
+                    <div class="p-3 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                </button>
+
+                <!-- Dropdown content (Two Columns with Buttons) -->
+                <div
+                    class="absolute z-10 mt-2 w-[720px] bg-white rounded-2xl shadow-xl border border-gray-100 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- Column 1 -->
+                        <div class="space-y-6">
+                            <!-- SD Dictation -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">SD Dictation</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
+                                        ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
+                                        ROWs <span class="text-gray-400">[Wk 4–6]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">30
+                                        ROWs <span class="text-gray-400">[Wk 7–9]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">40
+                                        ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
+                                </div>
+                            </div>
+
+                            <!-- Alphabet Dictation -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">Alphabet Dictation</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">10
+                                        ROWs <span class="text-gray-400">[Wk 1–6]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
+                                        ROWs <span class="text-gray-400">[Wk 7–10]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
+                                        ROWs <span class="text-gray-400">[Wk 11–12]</span></a>
+                                </div>
+                            </div>
+
+                            <!-- SD/DD Dictation -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">SD/DD Dictation</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">10
+                                        ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
+                                        ROWs <span class="text-gray-400">[Wk 4–6]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
+                                        ROWs <span class="text-gray-400">[Wk 7–9]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">30
+                                        ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Column 2 -->
+                        <div class="space-y-6">
+                            <!-- DD Dictation -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">DD Dictation</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">10
+                                        ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
+                                        ROWs <span class="text-gray-400">[Wk 4–6]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
+                                        ROWs <span class="text-gray-400">[Wk 7–9]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">30
+                                        ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
+                                </div>
+                            </div>
+
+                            <!-- 3D Dictation -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">3D Dictation</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">3
+                                        ROWs <span class="text-gray-400">[Wk 1–4]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">5
+                                        ROWs <span class="text-gray-400">[Wk 5–8]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">7
+                                        ROWs <span class="text-gray-400">[Wk 9–12]</span></a>
+                                </div>
+                            </div>
+
+                            <!-- Simultaneous 2 Sums -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">Simultaneous 2 Sums</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        5 ROWs <span class="text-gray-400">[Wk 1–5]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        7 ROWs <span class="text-gray-400">[Wk 6–9]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        10 ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
+                                </div>
+                            </div>
+
+                            <!-- Simultaneous SD 3 Sums -->
+                            <div class="space-y-3">
+                                <h4 class="text-lg font-semibold text-gray-800">Simultaneous SD 3 Sums</h4>
+                                <div class="space-y-2">
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        3 ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        5 ROWs <span class="text-gray-400">[Wk 4–7]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        7 ROWs <span class="text-gray-400">[Wk 8–9]</span></a>
+                                    <a href="dictation"
+                                        class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
+                                        10 ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="p-6 border-b border-gray-100">
+                    <h3 class="text-lg font-semibold">Recent Activity</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr class="text-left text-sm text-gray-500">
+                                <th class="px-6 py-3 font-medium">Date</th>
+                                <th class="px-6 py-3 font-medium">Activity</th>
+                                <th class="px-6 py-3 font-medium">Score</th>
+                                <th class="px-6 py-3 font-medium">Time Spent</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4">June 14, 2024</td>
+                                <td class="px-6 py-4 font-medium">Mental Calculation</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-sm">95/100</span>
+                                </td>
+                                <td class="px-6 py-4 text-gray-500">25 mins</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4">June 13, 2024</td>
+                                <td class="px-6 py-4 font-medium">Number Sequencing</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">80/100</span>
+                                </td>
+                                <td class="px-6 py-4 text-gray-500">30 mins</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4">June 12, 2024</td>
+                                <td class="px-6 py-4 font-medium">Ablation Training</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">100/100</span>
+                                </td>
+                                <td class="px-6 py-4 text-gray-500">20 mins</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Competition Practice -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-bold text-gray-800">Competition Practice</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- National -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold">National Level</h3>
+                                <p class="text-sm text-gray-500">Compete with top students nationwide</p>
+                            </div>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-600 text-sm rounded-full">Level 3</span>
+                        </div>
+                        <button onclick="window.location.href='dictation.html?type=competition&level=national'"
+                            class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                            Start Practice
+                        </button>
+                    </div>
+
+                    <!-- Regional -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold">Regional Level</h3>
+                                <p class="text-sm text-gray-500">Focus on local competition strategies</p>
+                            </div>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-600 text-sm rounded-full">Level 2</span>
+                        </div>
+                        <button onclick="window.location.href='dictation.html?type=competition&level=regional'"
+                            class="w-full bg-purple-600 text-white py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                            Start Practice
+                        </button>
+                    </div>
+
+                    <!-- Zonal -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold">Zonal Level</h3>
+                                <p class="text-sm text-gray-500">Sharpen your skills for zonal events</p>
+                            </div>
+                            <span class="px-3 py-1 bg-orange-100 text-orange-600 text-sm rounded-full">Level 1</span>
+                        </div>
+                        <button onclick="window.location.href='dictation.html?type=competition&level=zonal'"
+                            class="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors">
+                            Start Practice
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

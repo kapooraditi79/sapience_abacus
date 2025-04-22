@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 1 Practice - Abacus Adventure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Baloo 2', cursive;
+        }
+
+        .question-cell {
+            transition: all 0.2s;
+        }
+
+        .question-cell:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 2px #3B82F6;
+        }
+
+        .timer-pulse {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-b from-blue-50 to-purple-50 min-h-screen p-4">
+
+    <div class="max-w-6xl mx-auto space-y-6">
+        <!-- Header with Navigation -->
+        <header class="flex items-center justify-between bg-white rounded-2xl p-4 shadow-md">
+            <div class="flex items-center space-x-3">
+                <a href="dashboard.html" class="bg-blue-100 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </a>
+                <h1 class="text-xl font-bold text-blue-800">Back to Dashboard</h1>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="bg-blue-100 px-4 py-2 rounded-full flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 mr-2" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="font-medium text-blue-800 timer-pulse">Time Left: 37 Sec</span>
+                </div>
+
+                <div class="bg-green-100 px-4 py-2 rounded-full flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600 mr-2" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="font-medium text-green-800">10 Marks Each</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Practice Header -->
+        <div class="bg-white rounded-2xl p-6 shadow-md">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h2 class="text-2xl font-bold text-blue-800">Level 1 Practice</h2>
+                    <p class="text-gray-600">Interstate Online - Addition & Subtraction</p>
+                </div>
+                <div class="mt-4 md:mt-0 bg-yellow-100 px-4 py-2 rounded-full">
+                    <span class="font-medium text-yellow-800">User: Abacus</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questions Grid -->
+        <div class="bg-white rounded-2xl p-6 shadow-md overflow-x-auto">
+            <div class="min-w-max">
+                <!-- Question Numbers -->
+                <div class="grid grid-cols-20 gap-2 mb-4">
+                    <div class="col-span-4"></div>
+                    <template x-for="i in 20">
+                        <div
+                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center font-bold text-blue-800">
+                            <span x-text="i"></span>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Rows of Questions -->
+                <div class="grid grid-cols-20 gap-2 mb-4">
+                    <div class="col-span-4 flex items-center font-medium text-gray-700">Row 1</div>
+                    <template x-for="i in [6,1,5,8,9,2,3,4,9,7,4,5,9,5,8,2,9,7,9,6]">
+                        <div
+                            class="question-cell w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center font-bold text-blue-800 border border-blue-100 cursor-pointer hover:bg-blue-100">
+                            <span x-text="i"></span>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="grid grid-cols-20 gap-2 mb-4">
+                    <div class="col-span-4 flex items-center font-medium text-gray-700">Row 2</div>
+                    <template x-for="i in [1,8,2,1,2,5,3,5,5,6,8,1,6,3,2,9,2,2,9,5]">
+                        <div
+                            class="question-cell w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center font-bold text-blue-800 border border-blue-100 cursor-pointer hover:bg-blue-100">
+                            <span x-text="i"></span>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="grid grid-cols-20 gap-2 mb-4">
+                    <div class="col-span-4 flex items-center font-medium text-gray-700">Row 3</div>
+                    <template x-for="i in [-5,5,8,-7,3,2,-2,-7,9,4,1,8,-1,-1,4,3,6,6,8,1]">
+                        <div
+                            class="question-cell w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center font-bold text-blue-800 border border-blue-100 cursor-pointer hover:bg-blue-100">
+                            <span x-text="i"></span>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="grid grid-cols-20 gap-2 mb-4">
+                    <div class="col-span-4 flex items-center font-medium text-gray-700">Row 4</div>
+                    <template x-for="i in [9,7,-2,4,6,-6,2,5,1,8,8,1,-4,-2,2,2,-2,7,-2,4]">
+                        <div
+                            class="question-cell w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center font-bold text-blue-800 border border-blue-100 cursor-pointer hover:bg-blue-100">
+                            <span x-text="i"></span>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="grid grid-cols-20 gap-2">
+                    <div class="col-span-4 flex items-center font-medium text-gray-700">Row 5</div>
+                    <template x-for="i in [7,9,1,4,6,8,8,7,8,9,9,2,7,2,-4,1,8,-1,4,-5]">
+                        <div
+                            class="question-cell w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center font-bold text-blue-800 border border-blue-100 cursor-pointer hover:bg-blue-100">
+                            <span x-text="i"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <!-- Answer Input Section -->
+        <div class="bg-white rounded-2xl p-6 shadow-md">
+            <h3 class="text-lg font-bold text-blue-800 mb-4">Your Answers</h3>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="col-span-2 md:col-span-1">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Question</label>
+                    <div class="bg-blue-100 px-4 py-3 rounded-lg font-bold text-blue-800 text-center">Q5</div>
+                </div>
+
+                <div class="col-span-2 md:col-span-3">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Enter Your Answer</label>
+                    <div class="flex">
+                        <input type="number"
+                            class="flex-1 border border-gray-300 rounded-l-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-xl font-bold text-center"
+                            placeholder="Your answer">
+                        <button
+                            class="bg-blue-600 text-white px-6 rounded-r-lg font-bold hover:bg-blue-700 transition-colors">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between">
+            <button
+                class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition-colors flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                Previous
+            </button>
+
+            <div class="flex space-x-4">
+                <button
+                    class="bg-yellow-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-yellow-600 transition-colors">
+                    Pause
+                </button>
+                <button
+                    class="bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition-colors">
+                    Finish Test
+                </button>
+            </div>
+
+            <button
+                class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition-colors flex items-center">
+                Next
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</body>
+
+</html>

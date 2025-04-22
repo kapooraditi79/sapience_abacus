@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Number Dictation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-cover bg-center min-h-screen flex flex-col items-center justify-center"
+      style="background-image: url('98d37956-1819-458f-9568-06b32b4fc551.png');">
+    <button class="bg-cyan-500 text-white px-4 py-2 rounded">Back to Dashboard</button>
+    <div class="text-black font-bold text-lg level-display"></div>
+    <div class="flex gap-2">
+        <select id="rowsSelector" class="border p-2 rounded">
+            <option value="10">10 Rows</option>
+            <option value="15">15 Rows</option>
+            <option value="20">20 Rows</option>
+            <option value="30">30 Rows</option>
+        </select>
+        <select id="timeSelector" class="border p-2 rounded">
+            <option value="3">3 Seconds</option>
+            <option value="4">4 Seconds</option>
+            <option value="5">5 Seconds</option>
+            <option value="6">6 Seconds</option>
+            <option value="7">7 Seconds</option>
+            <option value="8">8 Seconds</option>
+            <option value="9">9 Seconds</option>
+            <option value="10">10 Seconds</option>
+            <option value="11">11 Seconds</option>
+            <option value="12">12 Seconds</option>
+            <option value="13">13 Seconds</option>
+            <option value="14">14 Seconds</option>
+            <option value="15">15 Seconds</option>
+            <option value="16">16 Seconds</option>
+            <option value="17">17 Seconds</option>
+            <option value="18">18 Seconds</option>
+            <option value="19">19 Seconds</option>
+            <option value="20">20 Seconds</option>
+            <option value="21">21 Seconds</option>
+        </select>
+        <button id="startBtn" onclick="startDictation()" class="bg-yellow-400 hover:bg-yellow-300 px-4 py-2 rounded">Start</button>
+        <button onclick="newSession()" class="bg-cyan-500 text-white px-4 py-2 rounded">New Session</button>
+    </div>
+
+    <div class="text-center my-20">
+        <div id="numberDisplay" class="text-6xl text-purple-700 font-bold p-6 border-2 rounded shadow-lg w-40 mx-auto">-</div>
+    </div>
+
+    <div class="flex flex-col items-center gap-4 mt-4">
+        <input type="number" id="answer" class="border p-2 rounded w-48 text-center" placeholder="Enter Total Sum" />
+        <button onclick="checkAnswer()" class="bg-green-500 text-white px-4 py-2 rounded">Check Answer</button>
+    </div>
+
+    <script>
+        let currentNumbers = [];
+        let currentIndex = 0;
+        let isRunning = false;
+        let correctSum = 0;
+        let numberTimer = null;
+
+        function init() {
+            updateLevelDisplay();
+            document.getElementById('answer').value = '';
+        }
+
+        function updateLevelDisplay() {
+            const rows = document.getElementById('rowsSelector').value;
+            const time = document.getElementById('timeSelector').value;
+            document.querySelector('.level-display').textContent =
+                `${rows} Numbers | ${time} Seconds Total`;
+        }
+
+        function generateNumbers() {
+            const rows = parseInt(document.getElementById('rowsSelector').value);
+            return Array.from({ length: rows }, () =>
+                Math.floor(Math.random() * 19) - 9 // Generates numbers from -9 to 9
+            );
+        }
+
+        function displayNumber(num) {
+            document.getElementById('numberDisplay').textContent = num > 0 ? `+${num}` : num;
+        }
+
+        function startDictation() {
+            if (isRunning) return;
+            isRunning = true;
+            document.getElementById('startBtn').disabled = true;
+
+            const rows = parseInt(document.getElementById('rowsSelector').value);
+            const totalTimeSec = parseInt(document.getElementById('timeSelector').value);
+            currentNumbers = generateNumbers();
+            correctSum = currentNumbers.reduce((a, b) => a + b, 0);
+            currentIndex = 0;
+            document.getElementById('answer').value = '';
+
+            // Calculate interval per number in ms
+            const intervalMs = Math.floor((totalTimeSec * 1000) / rows);
+
+            // Calculate speech rate so each utterance fits within interval (optional)
+            // We'll use a rate that should fit most utterances into the interval
+            // You can further tweak this if needed
+            const speechRate = 1.2;
+
+            function speakAndDisplay(index) {
+                if (index >= rows || !isRunning) {
+                    endDictation();
+                    return;
+                }
+                const num = currentNumbers[index];
+                displayNumber(num);
+
+                // Speak the number
+                const utterance = new SpeechSynthesisUtterance(num >= 0 ? `plus ${num}` : `minus ${Math.abs(num)}`);
+                utterance.rate = speechRate;
+                speechSynthesis.speak(utterance);
+            }
+
+            // Speak and display the first number immediately
+            speakAndDisplay(currentIndex);
+            currentIndex++;
+
+            // Schedule each subsequent number at fixed intervals
+            numberTimer = setInterval(() => {
+                if (currentIndex >= rows) {
+                    clearInterval(numberTimer);
+                    endDictation();
+                    return;
+                }
+                speakAndDisplay(currentIndex);
+                currentIndex++;
+            }, intervalMs);
+        }
+
+        function endDictation() {
+            isRunning = false;
+            speechSynthesis.cancel();
+            if (numberTimer) {
+                clearInterval(numberTimer);
+                numberTimer = null;
+            }
+            document.getElementById('numberDisplay').textContent = '-';
+            document.getElementById('startBtn').disabled = false;
+        }
+
+        function newSession() {
+            endDictation();
+            currentNumbers = [];
+            currentIndex = 0;
+            document.getElementById('answer').value = '';
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer').value) || 0;
+            alert(userAnswer === correctSum
+                ? `🎉 Correct! Sum is ${correctSum}`
+                : `❌ Incorrect. Correct sum was ${correctSum}`);
+        }
+
+        window.onload = init;
+        document.getElementById('rowsSelector').addEventListener('change', updateLevelDisplay);
+        document.getElementById('timeSelector').addEventListener('change', updateLevelDisplay);
+    </script>
+</body>
+</html>
