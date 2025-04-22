@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+    <div class="max-w-4xl mx-auto py-8 px-4">
+        <!-- Profile Header -->
+        <section class="bg-white p-6 rounded-2xl shadow mb-6">
+            <div class="flex items-center gap-6">
+                <div class="relative">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="w-24 h-24 rounded-full object-cover">
+                    <button class="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828L18 10.828m0 0L12.414 5.243a2 2 0 00-2.828 0L3 11.828m15-1V7m0 0h-4m4 0h4"></path></svg>
+                    </button>
+                </div>
+                <div>
+                    <h2 class="text-xl font-semibold text-green-800">Natashia Khaleira</h2>
+                    <p class="text-sm text-gray-600">Admin</p>
+                    <p class="text-sm text-gray-600">Leeds, United Kingdom</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Information -->
+        <section class="bg-white p-6 rounded-2xl shadow mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-green-800">Personal Information</h3>
+                <button class="bg-orange-500 text-white px-4 py-1 rounded-lg shadow hover:bg-orange-600 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5h2M12 5v14m7-7H5"></path></svg>
+                    Edit
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <p class="text-sm font-medium text-gray-500">First Name</p>
+                    <p class="text-base">Natashia</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Last Name</p>
+                    <p class="text-base">Khaleira</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Date of Birth</p>
+                    <p class="text-base">12-10-1990</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Email Address</p>
+                    <p class="text-base">info@binary-fusion.com</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Phone Number</p>
+                    <p class="text-base">(+62) 821 2554-5846</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">User Role</p>
+                    <p class="text-base">Admin</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Address Information -->
+        <section class="bg-white p-6 rounded-2xl shadow">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-green-800">Address</h3>
+                <button class="bg-orange-500 text-white px-4 py-1 rounded-lg shadow hover:bg-orange-600 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5h2M12 5v14m7-7H5"></path></svg>
+                    Edit
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Country</p>
+                    <p class="text-base">United Kingdom</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">City</p>
+                    <p class="text-base">Leeds, East London</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-500">Postal Code</p>
+                    <p class="text-base">ERT 1254</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
