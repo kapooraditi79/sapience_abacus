@@ -1,51 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Rapid Fire Dictation</title>
-  <script defer>
-    let customRate = 10; // Max reliable speed across browsers
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abacus Dictation Trainer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .progress-bar {
+        height: 10px;
+        background-color: #4f46e5;
+        width: 0%;
+        transition: width 0.1s linear;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans text-center p-6">
+    <header class="mb-6">
+      <h1 class="text-4xl font-bold text-indigo-700">
+        Abacus Dictation Trainer
+      </h1>
+      <button onclick="goToDashboard()" class="mt-2 text-blue-500 underline">
+        Dashboard
+      </button>
+    </header>
 
-    function updateRate(value) {
-      customRate = parseFloat(value);
-      document.getElementById("rateDisplay").textContent = value;
-    }
+    <main class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <div class="mb-4">
+        <label for="rowsSelector" class="block text-left mb-1"
+          >Number of Rows:</label
+        >
+        <select id="rowsSelector" class="w-full border p-2 rounded">
+          <option value="10">10 Rows</option>
+          <option value="15">15 Rows</option>
+          <option value="20">20 Rows</option>
+          <option value="30">30 Rows</option>
+        </select>
+      </div>
 
-    function speakNumbers() {
-      speechSynthesis.cancel();
+      <div class="mb-4">
+        <label for="timeSelector" class="block text-left mb-1"
+          >Total Time (Seconds):</label
+        >
+        <select id="timeSelector" class="w-full border p-2 rounded">
+          <option value="5">5</option>
+          <option value="7">7</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="21">21</option>
+        </select>
+      </div>
 
-      const numbers = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100));
-      document.getElementById("output").textContent = `Numbers: ${numbers.join(', ')}`;
+      <div class="flex gap-4 mb-6">
+        <button
+          onclick="startSession()"
+          class="bg-green-500 text-white px-4 py-2 rounded"
+        >
+          Start Session
+        </button>
+        <button
+          onclick="resetSession()"
+          class="bg-gray-400 text-white px-4 py-2 rounded"
+        >
+          New Session
+        </button>
+      </div>
 
-      // Create a single utterance
-      const combined = numbers.join(', ');
-      const msg = new SpeechSynthesisUtterance(combined);
-      msg.rate = customRate;
+      <div id="display" class="text-6xl font-bold text-purple-700 my-6">-</div>
 
-      speechSynthesis.speak(msg);
-    }
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100 gap-8 p-4">
+      <div class="w-full bg-gray-200 rounded-full overflow-hidden mb-4">
+        <div id="progress" class="progress-bar"></div>
+      </div>
 
-  <h1 class="text-3xl font-bold text-center">Rapid Fire Dictation</h1>
+      <div class="mt-6">
+        <input
+          type="number"
+          id="userAnswer"
+          class="border p-2 rounded w-full"
+          placeholder="Enter your answer"
+        />
+        <button
+          onclick="checkAnswer()"
+          class="mt-2 bg-blue-600 text-white px-4 py-2 rounded w-full"
+        >
+          Check Answer
+        </button>
+        <div id="feedback" class="mt-3 text-lg font-semibold"></div>
+      </div>
+    </main>
 
-  <!-- Rate Control -->
-  <div class="flex flex-col items-center gap-2">
-    <label for="rateSlider" class="font-semibold">Speech Rate: <span id="rateDisplay">10</span>x</label>
-    <input id="rateSlider" type="range" min="0.5" max="10" step="0.5" value="10"
-      oninput="updateRate(this.value)"
-      class="w-64 accent-red-600" />
-  </div>
+    <script>
+      const audioBasePath = "/audio/";
 
-  <!-- Button -->
-  <button onclick="speakNumbers()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-xl shadow-md">
-    🔥 Speak All 10 Numbers (No Gaps)
-  </button>
+      function getAudioFile(num) {
+        return `${audioBasePath}${num < 0 ? "minus" + Math.abs(num) : num}.mp3`;
+      }
 
-  <!-- Output -->
-  <div id="output" class="text-xl text-gray-700 mt-4 font-mono text-center"></div>
+      function generateNumbers(count) {
+        return Array.from(
+          { length: count },
+          () => Math.floor(Math.random() * 19) - 9
+        );
+      }
 
-</body>
+      function preloadAudio(numbers) {
+        return Promise.all(
+          numbers.map((num) => {
+            return new Promise((resolve, reject) => {
+              const audio = new Audio(getAudioFile(num));
+              audio.preload = "auto";
+
+              audio.addEventListener("canplaythrough", () => resolve(audio));
+              audio.addEventListener("error", () =>
+                reject(new Error(`Failed to load audio for ${num}`))
+              );
+              audio.load();
+            });
+          })
+        );
+      }
+
+      function goToDashboard() {
+        window.location.href = "/dashboard";
+      }
+
+      let numbers = [];
+      let audioFiles = [];
+
+      async function startSession() {
+        const rows = parseInt(document.getElementById("rowsSelector").value);
+        const totalTime = parseInt(
+          document.getElementById("timeSelector").value
+        );
+
+        if (totalTime <= 5 && rows > 7) {
+          alert("Short time requires fewer rows. Adjust inputs.");
+          return;
+        }
+
+        numbers = generateNumbers(rows);
+
+        try {
+          audioFiles = await preloadAudio(numbers);
+        } catch (error) {
+          alert("Error loading audio files: " + error.message);
+          return;
+        }
+
+        const display = document.getElementById("display");
+        const progress = document.getElementById("progress");
+
+        // Calculate total audio duration and adjust playback rate
+        let totalAudioDuration = 0;
+        audioFiles.forEach((audio) => {
+          totalAudioDuration += audio.duration || 1; // Fallback to 1s if duration is unavailable
+        });
+
+        // Calculate playback rate to fit within totalTime
+        const targetDuration = totalTime; // in seconds
+        const playbackRate = totalAudioDuration / targetDuration;
+        // Clamp playback rate between 0.5 (slower) and 2 (faster) for usability
+        const adjustedPlaybackRate = Math.max(0.5, Math.min(2, playbackRate));
+
+        // Adjust each audio's playback rate
+        audioFiles.forEach((audio) => {
+          audio.playbackRate = adjustedPlaybackRate;
+        });
+
+        // Recalculate the interval based on adjusted durations
+        const adjustedInterval =
+          (totalTime * 1000) / rows / adjustedPlaybackRate;
+
+        let index = 0;
+        let elapsedTime = 0;
+        let sessionTimeout = null;
+
+        const playNext = () => {
+          // Stop if we've exceeded the total time or finished all rows
+          if (elapsedTime >= totalTime * 1000 || index >= rows) {
+            display.textContent = "-";
+            progress.style.width = "100%";
+            clearTimeout(sessionTimeout);
+            return;
+          }
+
+          const num = numbers[index];
+          display.textContent = num >= 0 ? `+${num}` : num;
+
+          const audio = audioFiles[index];
+          audio
+            .play()
+            .then(() => {
+              // Update progress based on elapsed time
+              elapsedTime += adjustedInterval * adjustedPlaybackRate;
+              progress.style.width = `${
+                (elapsedTime / (totalTime * 1000)) * 100
+              }%`;
+
+              audio.onended = () => {
+                index++;
+                playNext();
+              };
+            })
+            .catch((error) => {
+              console.error(`Error playing audio for ${num}:`, error);
+              alert(`Error playing audio for ${num}: ${error.message}`);
+              index++;
+              playNext();
+            });
+        };
+
+        // Start the session
+        playNext();
+
+        // Enforce total session time with a timeout
+        sessionTimeout = setTimeout(() => {
+          display.textContent = "-";
+          progress.style.width = "100%";
+          index = rows; // Prevent further playback
+        }, totalTime * 1000);
+      }
+
+      function resetSession() {
+        document.getElementById("display").textContent = "-";
+        document.getElementById("userAnswer").value = "";
+        document.getElementById("feedback").textContent = "";
+        document.getElementById("progress").style.width = "0%";
+        numbers = [];
+        audioFiles = [];
+      }
+
+      function checkAnswer() {
+        const input = parseInt(document.getElementById("userAnswer").value);
+        const sum = numbers.reduce((a, b) => a + b, 0);
+        const feedback = document.getElementById("feedback");
+        feedback.textContent =
+          input === sum
+            ? "✅ Correct!"
+            : `❌ Incorrect. Correct answer is ${sum}`;
+        feedback.classList.remove("text-green-600", "text-red-600");
+        feedback.classList.add(
+          input === sum ? "text-green-600" : "text-red-600"
+        );
+      }
+    </script>
+  </body>
 </html>
