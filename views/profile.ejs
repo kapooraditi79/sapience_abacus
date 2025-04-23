@@ -1,21 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
 </head>
-<body class="bg-green-50 text-gray-800 font-sans">
 
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen text-gray-800 font-sans">
+
+    <!-- Sidebar -->
+    <div id="sidebarMenu"
+        class="fixed top-0 left-0 w-64 h-full bg-white shadow-xl z-50 sidebar-transition transform -translate-x-full">
+        <div class="p-4 space-y-4">
+            <a href="/dashboard" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Dashboard</a>
+            <a href="/leaderboard" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Leaderboard</a>
+            <a href="/levels" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">All Levels</a>
+            <a href="/profile" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Profile</a>
+            <a href="/fee" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Fee Page</a>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 z-40 bg-black bg-opacity-50 hidden" onclick="hideSidebar()"></div>
+
+    <!-- Header -->
+    <header class="w-full bg-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2 pl-0">
+                <button onclick="toggleSidebar()" class="focus:outline-none">
+                    <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <img src="/public/images/Logo.png" alt="Logo" class="w-8 h-8">
+                    <span class="text-green-700 font-semibold text-lg">Sapience Abacus</span>
+                </div>
+            </div>
+
+    </header>
+
+    <!-- Main Content -->
     <div class="max-w-4xl mx-auto py-8 px-4">
         <!-- Profile Header -->
         <section class="bg-white p-6 rounded-2xl shadow mb-6">
             <div class="flex items-center gap-6">
                 <div class="relative">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="w-24 h-24 rounded-full object-cover">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile"
+                        class="w-24 h-24 rounded-full object-cover">
                     <button class="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow">
-                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828L18 10.828m0 0L12.414 5.243a2 2 0 00-2.828 0L3 11.828m15-1V7m0 0h-4m4 0h4"></path></svg>
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828L18 10.828m0 0L12.414 5.243a2 2 0 00-2.828 0L3 11.828m15-1V7m0 0h-4m4 0h4">
+                            </path>
+                        </svg>
                     </button>
                 </div>
                 <div>
@@ -30,8 +77,11 @@
         <section class="bg-white p-6 rounded-2xl shadow mb-6">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold text-green-800">Personal Information</h3>
-                <button class="bg-orange-500 text-white px-4 py-1 rounded-lg shadow hover:bg-orange-600 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5h2M12 5v14m7-7H5"></path></svg>
+                <button
+                    class="bg-orange-500 text-white px-4 py-1 rounded-lg shadow hover:bg-orange-600 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h2M12 5v14m7-7H5"></path>
+                    </svg>
                     Edit
                 </button>
             </div>
@@ -67,8 +117,11 @@
         <section class="bg-white p-6 rounded-2xl shadow">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-semibold text-green-800">Address</h3>
-                <button class="bg-orange-500 text-white px-4 py-1 rounded-lg shadow hover:bg-orange-600 flex items-center gap-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5h2M12 5v14m7-7H5"></path></svg>
+                <button
+                    class="bg-orange-500 text-white px-4 py-1 rounded-lg shadow hover:bg-orange-600 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5h2M12 5v14m7-7H5"></path>
+                    </svg>
                     Edit
                 </button>
             </div>
@@ -89,5 +142,20 @@
         </section>
     </div>
 
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarMenu');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        function hideSidebar() {
+            document.getElementById('sidebarMenu').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
+        }
+    </script>
+
 </body>
+
 </html>

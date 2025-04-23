@@ -15,9 +15,10 @@
 
 <body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
     <!-- Sidebar -->
-    <div id="sidebarMenu" class="fixed top-0 left-0 w-64 h-full bg-white shadow-xl z-50 sidebar-transition transform -translate-x-full">
+    <div id="sidebarMenu"
+        class="fixed top-0 left-0 w-64 h-full bg-white shadow-xl z-50 sidebar-transition transform -translate-x-full">
         <div class="p-4 space-y-4">
-            <a href="/home" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Home</a>
+            <a href="/dashboard" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Dashboard</a>
             <a href="/leaderboard" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Leaderboard</a>
             <a href="/levels" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">All Levels</a>
             <a href="/profile" class="block px-3 py-2 text-gray-800 hover:bg-blue-100 rounded">Profile</a>
@@ -30,11 +31,11 @@
 
     <!-- Main Content -->
     <div class="flex flex-col min-h-screen">
-        <!-- Full-width Header -->
+        <!-- Full-width Header with left-aligned elements -->
         <header class="w-full bg-white shadow-md">
             <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-                <!-- Left Section: Menu Icon + Logo -->
-                <div class="flex items-center space-x-4">
+                <!-- Left Section: Menu Icon + Logo (shifted left with reduced padding) -->
+                <div class="flex items-center space-x-2 pl-0"> <!-- Changed space-x-4 to space-x-2 and added pl-0 -->
                     <!-- Hamburger Menu Icon -->
                     <button onclick="toggleSidebar()" class="focus:outline-none">
                         <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
@@ -45,7 +46,7 @@
 
                     <!-- Logo + Brand Name -->
                     <div class="flex items-center space-x-2">
-                        <img src="images/Sapiencelogo.png" alt="Logo" class="w-8 h-8">
+                        <img src="/public/images/Logo.png" alt="Logo" class="w-8 h-8">
                         <span class="text-green-700 font-semibold text-lg">Sapience Abacus</span>
                     </div>
                 </div>
@@ -58,6 +59,7 @@
             </div>
         </header>
 
+        <!-- Rest of your content remains exactly the same -->
         <!-- Page Content -->
         <div class="max-w-6xl mx-auto px-6 py-8 flex-grow space-y-8">
             <!-- Student Name Below Header -->
@@ -154,159 +156,21 @@
                     </div>
                 </button>
 
-                <!-- Review Practice -->
-                <div class="relative group">
-                    <button
-                        class="group flex items-center justify-between p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 w-full">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900">Dictation Practices</h3>
-                            <p class="text-gray-500 text-sm">Tap to choose a category</p>
-                        </div>
-                        <div class="p-3 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
-                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                            </svg>
-                        </div>
-                    </button>
-
-                    <!-- Dropdown content (Two Columns with Buttons) -->
-                    <div
-                        class="absolute z-10 mt-2 w-[720px] bg-white rounded-2xl shadow-xl border border-gray-100 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
-
-                        <div class="grid grid-cols-2 gap-6">
-                            <!-- Column 1 -->
-                            <div class="space-y-6">
-                                <!-- SD Dictation -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">SD Dictation</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
-                                            ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
-                                            ROWs <span class="text-gray-400">[Wk 4–6]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">30
-                                            ROWs <span class="text-gray-400">[Wk 7–9]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">40
-                                            ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
-                                    </div>
-                                </div>
-
-                                <!-- Alphabet Dictation -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">Alphabet Dictation</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">10
-                                            ROWs <span class="text-gray-400">[Wk 1–6]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
-                                            ROWs <span class="text-gray-400">[Wk 7–10]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
-                                            ROWs <span class="text-gray-400">[Wk 11–12]</span></a>
-                                    </div>
-                                </div>
-
-                                <!-- SD/DD Dictation -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">SD/DD Dictation</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">10
-                                            ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
-                                            ROWs <span class="text-gray-400">[Wk 4–6]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
-                                            ROWs <span class="text-gray-400">[Wk 7–9]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">30
-                                            ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Column 2 -->
-                            <div class="space-y-6">
-                                <!-- DD Dictation -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">DD Dictation</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">10
-                                            ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">15
-                                            ROWs <span class="text-gray-400">[Wk 4–6]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">20
-                                            ROWs <span class="text-gray-400">[Wk 7–9]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">30
-                                            ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
-                                    </div>
-                                </div>
-
-                                <!-- 3D Dictation -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">3D Dictation</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">3
-                                            ROWs <span class="text-gray-400">[Wk 1–4]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">5
-                                            ROWs <span class="text-gray-400">[Wk 5–8]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">7
-                                            ROWs <span class="text-gray-400">[Wk 9–12]</span></a>
-                                    </div>
-                                </div>
-
-                                <!-- Simultaneous 2 Sums -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">Simultaneous 2 Sums</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            5 ROWs <span class="text-gray-400">[Wk 1–5]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            7 ROWs <span class="text-gray-400">[Wk 6–9]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            10 ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
-                                    </div>
-                                </div>
-
-                                <!-- Simultaneous SD 3 Sums -->
-                                <div class="space-y-3">
-                                    <h4 class="text-lg font-semibold text-gray-800">Simultaneous SD 3 Sums</h4>
-                                    <div class="space-y-2">
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            3 ROWs <span class="text-gray-400">[Wk 1–3]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            5 ROWs <span class="text-gray-400">[Wk 4–7]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            7 ROWs <span class="text-gray-400">[Wk 8–9]</span></a>
-                                        <a href="dictation"
-                                            class="block w-full text-left bg-gray-50 hover:bg-blue-50 px-4 py-2 rounded-xl text-sm text-gray-700">SD
-                                            10 ROWs <span class="text-gray-400">[Wk 10–12]</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Replace the Dictation Practices section in your dashboard with this: -->
+                <a href="/dictation-practice"
+                    class="group flex items-center justify-between p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <!-- button content -->
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900">Dictation Practices</h3>
+                        <p class="text-gray-500 text-sm">Explore all practice categories</p>
                     </div>
-                </div>
+                    <div class="p-3 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                </a>
 
                 <!-- Recent Activity -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -384,7 +248,8 @@
                                     <h3 class="text-lg font-semibold">Regional Level</h3>
                                     <p class="text-sm text-gray-500">Focus on local competition strategies</p>
                                 </div>
-                                <span class="px-3 py-1 bg-purple-100 text-purple-600 text-sm rounded-full">Level 2</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-600 text-sm rounded-full">Level
+                                    2</span>
                             </div>
                             <button onclick="window.location.href='dictation.html?type=competition&level=regional'"
                                 class="w-full bg-purple-600 text-white py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors">
@@ -400,7 +265,8 @@
                                     <h3 class="text-lg font-semibold">Zonal Level</h3>
                                     <p class="text-sm text-gray-500">Sharpen your skills for zonal events</p>
                                 </div>
-                                <span class="px-3 py-1 bg-orange-100 text-orange-600 text-sm rounded-full">Level 1</span>
+                                <span class="px-3 py-1 bg-orange-100 text-orange-600 text-sm rounded-full">Level
+                                    1</span>
                             </div>
                             <button onclick="window.location.href='dictation.html?type=competition&level=zonal'"
                                 class="w-full bg-orange-500 text-white py-3 rounded-lg font-medium hover:bg-orange-600 transition-colors">
